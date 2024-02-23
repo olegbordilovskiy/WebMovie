@@ -1,0 +1,30 @@
+﻿namespace WebMovie.Data.Enumerations
+{
+    public enum Country
+    {
+        Australia,
+        Austria,
+        Belarus,
+        Brazil,
+        Canada,
+        China,
+        Czechia,
+        Denmark,
+        Egypt,
+        Estonia,
+        Finland,
+        France,
+        Germany,
+        Greece,
+        India,
+        Israel,
+        Italy,
+        Japan,
+        Poland,
+        Russia,
+        Sweden,
+        Ukraine,
+        United_Kingdom,
+        United_States,
+    }
+}

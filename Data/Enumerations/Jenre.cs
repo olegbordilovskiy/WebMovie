@@ -1,0 +1,32 @@
+﻿namespace WebMovie.Data.Enumerations
+{
+    public enum Jenre
+    {
+        Drama,
+        Comedy,
+        Action,
+        Horror,
+        Science_Fiction,
+        Fantasy,
+        Romance,
+        Thriller,
+        Crime,
+        Detective,
+        Western,
+        Animation,
+        Cartoon,
+        Historical,
+        Biography,
+        War,
+        Musical,
+        Sport,
+        Adventure,
+        Noir,
+        Family,
+        Documentary,
+        Sci_Fi,
+        Mystery,
+        Short,
+        Experimental
+    }
+}

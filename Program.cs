@@ -1,3 +1,5 @@
+using WebMovie.Data;
+
 namespace WebMovie
 {
     public class Program
@@ -7,6 +9,7 @@ namespace WebMovie
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<DatabaseContext>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
