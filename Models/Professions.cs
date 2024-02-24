@@ -6,5 +6,6 @@ namespace WebMovie.Models
     {
         public int NameId { get; set; }
         public Profession Profession { get; set; }
+
     }
 }

@@ -14,8 +14,14 @@ namespace WebMovie.Models
         public Country Country { get; set; }
         public ushort RuntimeMinutes { get; set; }
 
+        // Relations
 
-        
+        public List<Directors> Directors { get; set; }
+        public List<KnownFor> KnownFor { get; set; }
+        public List<Writers> Writers { get; set; }
+        public List<Roles> Roles { get; set; }
+
+
 
     }
 }
