@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WebMovie.Data;
 
 namespace WebMovie
@@ -9,7 +10,7 @@ namespace WebMovie
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<DatabaseContext>();
+            builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
