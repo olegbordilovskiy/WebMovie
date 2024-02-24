@@ -3,7 +3,7 @@ using WebMovie.Data.Enumerations;
 
 namespace WebMovie.Models
 {
-    public class Movies
+    public class Movie
     {
         [Key]
         public int Id { get; set; }
@@ -16,10 +16,10 @@ namespace WebMovie.Models
 
         // Relations
 
-        public List<Directors> Directors { get; set; }
+        public List<Director> Directors { get; set; }
         public List<KnownFor> KnownFor { get; set; }
-        public List<Writers> Writers { get; set; }
-        public List<Roles> Roles { get; set; }
+        public List<Writer> Writers { get; set; }
+        public List<Role> Roles { get; set; }
 
 
 

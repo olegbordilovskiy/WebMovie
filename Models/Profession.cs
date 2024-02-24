@@ -2,10 +2,10 @@
 
 namespace WebMovie.Models
 {
-    public class Professions
+    public class Profession
     {
         public int NameId { get; set; }
-        public Profession Profession { get; set; }
+        public Profession MovieProfession { get; set; }
 
     }
 }

@@ -2,21 +2,21 @@
 
 namespace WebMovie.Models
 {
-    public class Names
+    public class Name
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FullName { get; set; }
         public DateOnly BirthYear { get; set; }
         public DateOnly? DeathYear { get; set; }
         public string Description { get; set; }
 
         // Relations
-        public List<Directors> Directors { get; set; }
+        public List<Director> Directors { get; set; }
         public List<KnownFor> KnownFor { get; set; }
-        public List<Writers> Writers { get; set; }
-        public List<Roles > Roles { get; set; }
-        public List<Professions> Professions { get; set; }
+        public List<Writer> Writers { get; set; }
+        public List<Role > Roles { get; set; }
+        public List<Profession> Professions { get; set; }
 
     }
 }

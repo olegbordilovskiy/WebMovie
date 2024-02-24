@@ -2,15 +2,15 @@
 
 namespace WebMovie.Models
 {
-    public class Directors
+    public class Writer
     {
         public int MovieId { get; set; }
         public int NameId { get; set; }
 
         [ForeignKey("MovieId")]
-        public Movies Movie { get; set; }
+        public Movie Movie { get; set; }
 
         [ForeignKey("NameId")]
-        public Names Name { get; set; }
+        public Name Name { get; set; }
     }
 }
