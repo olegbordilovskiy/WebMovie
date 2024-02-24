@@ -31,7 +31,7 @@ namespace WebMovie.Data
 
             modelBuilder.Entity<Name>().HasKey(n => new { n.Id });
 
-            modelBuilder.Entity<Profession>().HasKey(p => new { p.NameId });
+            modelBuilder.Entity<Profession>().HasKey(p => new { p.NameId , p.MovieProfession});
 
             modelBuilder.Entity<Role>().HasKey(r => new { r.MovieId, r.NameId });
 

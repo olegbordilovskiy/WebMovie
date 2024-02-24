@@ -12,7 +12,7 @@ using WebMovie.Data;
 namespace WebMovie.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240224205103_Initial")]
+    [Migration("20240224212508_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -139,14 +139,14 @@ namespace WebMovie.Migrations
             modelBuilder.Entity("WebMovie.Models.Profession", b =>
                 {
                     b.Property<int>("NameId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
-                    b.Property<int>("MovieProfessionNameId")
-                        .HasColumnType("int");
+                    b.Property<int>("MovieProfession")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
-                    b.HasKey("NameId");
-
-                    b.HasIndex("MovieProfessionNameId");
+                    b.HasKey("NameId", "MovieProfession");
 
                     b.ToTable("Professions");
                 });
@@ -248,19 +248,11 @@ namespace WebMovie.Migrations
 
             modelBuilder.Entity("WebMovie.Models.Profession", b =>
                 {
-                    b.HasOne("WebMovie.Models.Profession", "MovieProfession")
-                        .WithMany()
-                        .HasForeignKey("MovieProfessionNameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WebMovie.Models.Name", "Name")
                         .WithMany("Professions")
                         .HasForeignKey("NameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("MovieProfession");
 
                     b.Navigation("Name");
                 });

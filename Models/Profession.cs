@@ -6,12 +6,14 @@ namespace WebMovie.Models
 {
     public class Profession
     {
-        [Key]
+        [Key, Column(Order = 1)]
         public int NameId { get; set; }
 
         [ForeignKey("NameId")]
         public Name Name { get; set; }
-        public Profession MovieProfession { get; set; }
+
+        [Key, Column(Order = 2)]
+        public Data.Enumerations.Professions MovieProfession { get; set; }
 
     }
 }

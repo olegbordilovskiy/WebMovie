@@ -1,6 +1,6 @@
 ﻿namespace WebMovie.Data.Enumerations
 {
-    public enum Profession
+    public enum Professions
     {
         Actor,
         Director,

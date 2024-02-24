@@ -122,22 +122,16 @@ namespace WebMovie.Migrations
                 columns: table => new
                 {
                     NameId = table.Column<int>(type: "int", nullable: false),
-                    MovieProfessionNameId = table.Column<int>(type: "int", nullable: false)
+                    MovieProfession = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Professions", x => x.NameId);
+                    table.PrimaryKey("PK_Professions", x => new { x.NameId, x.MovieProfession });
                     table.ForeignKey(
                         name: "FK_Professions_Names_NameId",
                         column: x => x.NameId,
                         principalTable: "Names",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Professions_Professions_MovieProfessionNameId",
-                        column: x => x.MovieProfessionNameId,
-                        principalTable: "Professions",
-                        principalColumn: "NameId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -204,11 +198,6 @@ namespace WebMovie.Migrations
                 name: "IX_Producers_NameId",
                 table: "Producers",
                 column: "NameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Professions_MovieProfessionNameId",
-                table: "Professions",
-                column: "MovieProfessionNameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Roles_NameId",
