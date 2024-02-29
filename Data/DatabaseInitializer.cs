@@ -3,7 +3,7 @@ using WebMovie.Models;
 
 namespace WebMovie.Data
 {
-    public class AppDbInitializer
+    public class DatabaseInitializer
     {
         public static void Seed(IApplicationBuilder appBuilder)
         {
@@ -40,6 +40,7 @@ namespace WebMovie.Data
                         }
                     });
 
+                    context.SaveChanges();
                 }
 
             }
