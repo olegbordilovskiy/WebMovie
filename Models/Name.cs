@@ -7,8 +7,8 @@ namespace WebMovie.Models
         [Key]
         public int Id { get; set; }
         public string FullName { get; set; }
-        public DateOnly BirthYear { get; set; }
-        public DateOnly? DeathYear { get; set; }
+        public ushort BirthYear { get; set; }
+        public ushort? DeathYear { get; set; }
         public string Description { get; set; }
 
         // Relations

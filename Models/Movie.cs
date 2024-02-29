@@ -9,8 +9,8 @@ namespace WebMovie.Models
         public int Id { get; set; }
         public string EnglishTitle { get; set; }
         public string Description { get; set; }
-        public DateOnly StartYear { get; set; }
-        public DateOnly EndYear { get; set;}
+        public ushort StartYear { get; set; }
+        public ushort EndYear { get; set;}
         public Country Country { get; set; }
         public ushort RuntimeMinutes { get; set; }
 
