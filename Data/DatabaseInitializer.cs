@@ -14,7 +14,7 @@ namespace WebMovie.Data
                 context.Database.EnsureCreated();
 
 
-                if (context.Movies.Any())
+                if (!context.Movies.Any())
                 {
                     context.Movies.AddRange(new List<Movie>
                     {
@@ -27,7 +27,7 @@ namespace WebMovie.Data
                             Country = Enumerations.Country.United_States,
                             MPAA = Enumerations.MPAA.R,
                             RuntimeMinutes = 99,
-                            PosterImageUrl = "\\..\\wwwroot\\img\\movies\\posters\\reseirvoir-dogsjpg.jpg"
+                            PosterImageUrl = "./img/movies/posters/reseirvoir-dogsjpg.jpg"
 
 						},
                          new Movie()
@@ -39,7 +39,7 @@ namespace WebMovie.Data
                             Country = Enumerations.Country.United_States,
 							MPAA = Enumerations.MPAA.R,
 							RuntimeMinutes = 88,
-                            PosterImageUrl = "\\..\\wwwroot\\img\\movies\\posters\\dont-breathe.jpg"
+                            PosterImageUrl = "./img/movies/posters/dont-breathe.jpg"
 
 						}
                     });;

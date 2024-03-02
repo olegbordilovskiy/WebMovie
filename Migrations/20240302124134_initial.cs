@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace WebMovie.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,10 +18,12 @@ namespace WebMovie.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EnglishTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartYear = table.Column<DateOnly>(type: "date", nullable: false),
-                    EndYear = table.Column<DateOnly>(type: "date", nullable: false),
+                    StartYear = table.Column<int>(type: "int", nullable: false),
+                    EndYear = table.Column<int>(type: "int", nullable: false),
                     Country = table.Column<int>(type: "int", nullable: false),
-                    RuntimeMinutes = table.Column<int>(type: "int", nullable: false)
+                    MPAA = table.Column<int>(type: "int", nullable: false),
+                    RuntimeMinutes = table.Column<int>(type: "int", nullable: false),
+                    PosterImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,8 +37,8 @@ namespace WebMovie.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthYear = table.Column<DateOnly>(type: "date", nullable: false),
-                    DeathYear = table.Column<DateOnly>(type: "date", nullable: true),
+                    BirthYear = table.Column<int>(type: "int", nullable: false),
+                    DeathYear = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

@@ -15,7 +15,7 @@ namespace WebMovie.Controllers
         public IActionResult Index()
         {
             var data = _databaseContext.Movies.ToList();
-            return View();
+            return View(data);
         }
     }
 }
