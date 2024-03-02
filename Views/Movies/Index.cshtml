@@ -1,0 +1,28 @@
+﻿@model List<Movie>
+
+@{
+	ViewData["Title"] = "List of Movies";
+}
+
+<ul class="movies-top">
+	@{int counter = 0;}
+	@foreach (var item in Model)
+	{
+		<li>
+			<div class="poster" style="background-image: url('@item.PosterImageUrl')"></div>
+			<div class="description">
+				<div class="title">
+					<span>@counter. @item.EnglishTitle</span>
+				</div>
+				<div class="info">
+					<div class="year"></div>
+					<div class="runtime-minutes"></div>
+					<div class=""
+					@Html.DisplayFor(modelItem => item.Description);
+				</div>
+				<div class="rating"></div>
+			</div>
+		</li>
+		counter++;
+	}
+</ul>

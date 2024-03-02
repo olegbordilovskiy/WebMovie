@@ -7,12 +7,24 @@ namespace WebMovie.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Display(Name = "English title")]
         public string EnglishTitle { get; set; }
-        public string Description { get; set; }
+
+		[Display(Name = "Description")]
+		public string Description { get; set; }
+
         public ushort StartYear { get; set; }
+
         public ushort EndYear { get; set;}
+
         public Country Country { get; set; }
+        public MPAA MPAA { get; set; }
+
         public ushort RuntimeMinutes { get; set; }
+
+		[Display(Name = "Poster Image URL")]
+		public string PosterImageUrl { get; set; }
 
         // Relations
 

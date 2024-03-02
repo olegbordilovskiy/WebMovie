@@ -25,9 +25,11 @@ namespace WebMovie.Data
                             StartYear = 1992,
                             EndYear = 1992,
                             Country = Enumerations.Country.United_States,
+                            MPAA = Enumerations.MPAA.R,
                             RuntimeMinutes = 99,
+                            PosterImageUrl = "\\..\\wwwroot\\img\\movies\\posters\\reseirvoir-dogsjpg.jpg"
 
-                        },
+						},
                          new Movie()
                         {
                             EnglishTitle = "Don't Breathe",
@@ -35,10 +37,12 @@ namespace WebMovie.Data
                             StartYear = 2016,
                             EndYear = 2016,
                             Country = Enumerations.Country.United_States,
-                            RuntimeMinutes = 88,
+							MPAA = Enumerations.MPAA.R,
+							RuntimeMinutes = 88,
+                            PosterImageUrl = "\\..\\wwwroot\\img\\movies\\posters\\dont-breathe.jpg"
 
-                        }
-                    });
+						}
+                    });;
 
                     context.SaveChanges();
                 }
