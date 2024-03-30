@@ -29,9 +29,10 @@ namespace WebMovie.Models
         // Relations
 
         public List<Director> Directors { get; set; }
-        public List<KnownFor> KnownFor { get; set; }
+        public List<KnownFor> KnownFors { get; set; }
         public List<Writer> Writers { get; set; }
         public List<Role> Roles { get; set; }
+        public List<Producer> Producers { get; set; } 
 
 
 
