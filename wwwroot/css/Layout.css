@@ -4,5 +4,12 @@
 }
 .navbar {
     background-color: #0e0e0e;
+    font-weight: 500;
+}
+.watchlist-count {
+    font-size: 14px;
+    height:28px;
+    font-weight:1000;
+
 }
 

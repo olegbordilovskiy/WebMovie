@@ -37,7 +37,8 @@
 								<a class="dropdown-item" asp-controller="Movies" asp-action="Index"> <i class="bi bi-person-square me-2"></i>Actors</a>
 							</div>
 						</li>
-						<form class="form-inline my-5 my-lg-0 col-md-6 mx-3" asp-controller="Movies" asp-action="" style="display:flex;padding-right: 25px;">
+
+						<form class="form-inline my-5 my-lg-0 col-md-6 mx-3" asp-controller="Movies" asp-action="" style="display:flex;">
 							<div class="input-group bg-light">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSearch" role="button" data-toggle="button" data-bs-toggle="dropdown"
 								   aria-haspopup="true" aria-expanded="false">
@@ -51,9 +52,34 @@
 								<button class="btn btn-light" type="submit"><i class="bi bi-search"></i></button>
 							</div>
 						</form>
+						<li class="navbar-nav">
+							<div class="input-group">
+								<a class="nav-link text-white mx-2" asp-controller="" asp-action="">
+									<i class="bi-bookmark-plus-fill me-2"></i>Watchlist
+								</a>
+								<div class="d-flex align-items-center">
+									<div class="watchlist-count bg-warning py-1 px-2 rounded-1">
+										228
+									</div>
+								</div>
+							</div>
+						</li>
+
+						@* best version but idk how to fix bug *@
+						@* <li class="navbar-nav">
+						<div class="input-group">
+						<button class="btn btn-black nav-link text-white mx-2 d-flex align-items-center" asp-controller="" asp-action="">
+						<i class="bi-bookmark-plus-fill me-2"></i>
+						Watchlist
+						<div class="watchlist-count bg-warning py-1 px-2 mx-2 rounded-1 text-dark">
+						228
+						</div>
+						</button>
+						</div>
+						</li> *@
 					</ul>
 				</div>
-				
+
 			</div>
 
 		</nav>
