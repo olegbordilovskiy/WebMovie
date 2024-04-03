@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMovie.Data;
 
@@ -10,9 +11,11 @@ using WebMovie.Data;
 namespace WebMovie.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240330072516_some_new_relations")]
+    partial class some_new_relations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,21 +26,15 @@ namespace WebMovie.Migrations
 
             modelBuilder.Entity("WebMovie.Models.Director", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("MovieId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
                     b.Property<int>("NameId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
+                    b.HasKey("MovieId", "NameId");
 
                     b.HasIndex("NameId");
 
@@ -46,25 +43,19 @@ namespace WebMovie.Migrations
 
             modelBuilder.Entity("WebMovie.Models.KnownFor", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("MovieId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
                     b.Property<int>("NameId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
+                    b.HasKey("MovieId", "NameId");
 
                     b.HasIndex("NameId");
 
-                    b.ToTable("KnownFors");
+                    b.ToTable("KnownFor");
                 });
 
             modelBuilder.Entity("WebMovie.Models.Movie", b =>
@@ -136,21 +127,15 @@ namespace WebMovie.Migrations
 
             modelBuilder.Entity("WebMovie.Models.Producer", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("MovieId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
                     b.Property<int>("NameId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
+                    b.HasKey("MovieId", "NameId");
 
                     b.HasIndex("NameId");
 
@@ -159,71 +144,34 @@ namespace WebMovie.Migrations
 
             modelBuilder.Entity("WebMovie.Models.Profession", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("NameId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
                     b.Property<int>("MovieProfession")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
-                    b.Property<int>("NameId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NameId");
+                    b.HasKey("NameId", "MovieProfession");
 
                     b.ToTable("Professions");
                 });
 
-            modelBuilder.Entity("WebMovie.Models.Rating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("AverageRating")
-                        .HasColumnType("decimal(2, 1)");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VotesNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId")
-                        .IsUnique();
-
-                    b.ToTable("Ratings");
-                });
-
             modelBuilder.Entity("WebMovie.Models.Role", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("NameId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.Property<string>("Character")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NameId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
+                    b.HasKey("MovieId", "NameId");
 
                     b.HasIndex("NameId");
 
@@ -315,17 +263,6 @@ namespace WebMovie.Migrations
                     b.Navigation("Name");
                 });
 
-            modelBuilder.Entity("WebMovie.Models.Rating", b =>
-                {
-                    b.HasOne("WebMovie.Models.Movie", "Movie")
-                        .WithOne("Rating")
-                        .HasForeignKey("WebMovie.Models.Rating", "MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-                });
-
             modelBuilder.Entity("WebMovie.Models.Role", b =>
                 {
                     b.HasOne("WebMovie.Models.Movie", "Movie")
@@ -371,9 +308,6 @@ namespace WebMovie.Migrations
                     b.Navigation("KnownFors");
 
                     b.Navigation("Producers");
-
-                    b.Navigation("Rating")
-                        .IsRequired();
 
                     b.Navigation("Roles");
 

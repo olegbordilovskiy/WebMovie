@@ -4,7 +4,7 @@ namespace WebMovie.Models
 {
     public class Name
     {
-        [Key]
+        //[Key]
         public int Id { get; set; }
         public string FullName { get; set; }
         public ushort BirthYear { get; set; }

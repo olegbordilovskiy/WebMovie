@@ -5,10 +5,10 @@ namespace WebMovie.Models
 {
     public class Movie
     {
-        [Key]
+        //[Key]
         public int Id { get; set; }
 
-        [Display(Name = "English title")]
+        [Display(Name = "English title")] 
         public string EnglishTitle { get; set; }
 
 		[Display(Name = "Description")]
@@ -33,6 +33,7 @@ namespace WebMovie.Models
         public List<Writer> Writers { get; set; }
         public List<Role> Roles { get; set; }
         public List<Producer> Producers { get; set; } 
+        public Rating Rating { get; set; }
 
 
 

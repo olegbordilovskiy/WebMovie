@@ -5,16 +5,17 @@ namespace WebMovie.Models
 {
     public class Director
     {
-        [Key, Column(Order = 1)]
-        public int MovieId { get; set; }
+        public int Id { get; set; }
+        //[Key, Column(Order = 1)]
+        //public int MovieId { get; set; }
 
-        [Key, Column(Order = 2)]
-        public int NameId { get; set; }
+        //[Key, Column(Order = 2)]
+        //public int NameId { get; set; }
 
-        [ForeignKey("MovieId")]
+        //[ForeignKey("MovieId")]
         public Movie Movie { get; set; }
 
-        [ForeignKey("NameId")]
+        //[ForeignKey("NameId")]
         public Name Name { get; set; }
     }
 }

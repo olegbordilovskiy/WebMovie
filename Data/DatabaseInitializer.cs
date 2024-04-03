@@ -1,4 +1,5 @@
 ﻿using System.Xml.Schema;
+using WebMovie.Controllers;
 using WebMovie.Models;
 
 namespace WebMovie.Data
@@ -46,6 +47,27 @@ namespace WebMovie.Data
 
                     context.SaveChanges();
                 }
+
+                if (!context.Ratings.Any())
+                {
+                    context.Ratings.AddRange(new List<Rating>
+                    {
+                        new Rating()
+                        {
+                            Movie = context.Movies.FirstOrDefault(m => m.EnglishTitle == "Reservoir Dogs"),
+                            VotesNumber = 1100000,
+                            AverageRating = 8.3m,
+                        },
+						 new Rating()
+						{
+							Movie = context.Movies.FirstOrDefault(m => m.EnglishTitle == "Don't Breathe"),
+							VotesNumber = 300000,
+							AverageRating = 7.1m,   
+						}
+					});
+
+					context.SaveChanges();
+				}
 
             }
         }

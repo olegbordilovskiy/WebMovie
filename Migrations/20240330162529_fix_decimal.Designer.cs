@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMovie.Data;
 
@@ -10,9 +11,11 @@ using WebMovie.Data;
 namespace WebMovie.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240330162529_fix_decimal")]
+    partial class fix_decimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,15 +235,21 @@ namespace WebMovie.Migrations
 
             modelBuilder.Entity("WebMovie.Models.Writer", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("MovieId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     b.Property<int>("NameId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
+                        .HasColumnType("int");
 
-                    b.HasKey("MovieId", "NameId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
 
                     b.HasIndex("NameId");
 

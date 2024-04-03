@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebMovie.Data;
+using WebMovie.ViewModels;
 
 namespace WebMovie.Controllers
 {
@@ -14,8 +15,11 @@ namespace WebMovie.Controllers
 
         public IActionResult Index()
         {
-            var data = _databaseContext.Movies.ToList();
-            return View(data);
+            var moviesVM = new MoviesVM();
+            moviesVM.Movies = _databaseContext.Movies.ToList();
+            moviesVM.Ratings = _databaseContext.Ratings.ToList();
+           
+            return View(moviesVM);
         }
     }
 }

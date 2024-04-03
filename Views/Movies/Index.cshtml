@@ -1,44 +1,17 @@
-﻿@model List<Movie>
-
-@* добавить отношение с рейтингами*@
+﻿@using WebMovie.ViewModels;
+@model MoviesVM;
 
 @{
 	ViewData["Title"] = "List of Movies";
 }
-
-@* <ul class="movies-top list-unstyled">
-	@{int counter = 1;}
-	@foreach (var item in Model)
-	{
-		<li>
-			
-			<div class="poster">
-				<img src="@item.PosterImageUrl" />
-			</div>
-
-			<div class="description">
-				<div class="title">
-					<span>@counter. @item.EnglishTitle</span>
-				</div>
-				<div class="info">
-					<div class="year"></div>
-					<div class="runtime-minutes"></div>
-					<div class="mpaa"></div>
-				</div>
-				<div class="rating"></div>
-			</div>
-
-
-		</li>
-		counter++;
-	}
-</ul> *@
-
+<head>
+	<link href="~/css/Movies.css" rel="stylesheet" media="all" />
+</head>
 <ul class="movies-top list-unstyled">
 	@{
 		int counter = 1;
 	}
-	@foreach (var item in Model)
+	@foreach (var item in Model.Movies)
 	{
 		<li class="row mb-4 mr-3">
 			<div class="poster col-md-1">
@@ -49,11 +22,41 @@
 					<span class="h5">@counter. @item.EnglishTitle</span>
 				</div>
 				<div class="info">
-					<div class="year"></div>
-					<div class="runtime-minutes"></div>
-					<div class="mpaa"></div>
+					@{
+						var runtime = TimeSpan.FromMinutes(item.RuntimeMinutes);
+						var formattedRuntime = $"{runtime.Hours}h {runtime.Minutes}m";
+					}
+					<div class="movie-info"><span>@item.StartYear</span> <span>@formattedRuntime</span> <span>@item.MPAA</span> </div>
 				</div>
-				<div class="rating"></div>
+				@{
+					string? votes;
+					char order = ' ';
+					var votesNumber = Model.Ratings.FirstOrDefault(r => r.MovieId == item.Id)?.VotesNumber;
+					if (votesNumber >= 1000000)
+					{
+						order = 'M';
+						votes = ((float)votesNumber / 1000000).ToString("0.0");
+					}
+					else if (votesNumber >= 1000)
+					{
+						order = 'K';
+						votes = ((float)votesNumber / 1000).ToString("0.0");
+					}
+					else
+					{
+						order = ' ';
+						votes = votesNumber?.ToString();
+					}
+					var formattedVotesNumber = $"({votes}{order})";
+				}
+
+				<div class="rating">
+					<div class="rating-img-wrap">
+						<img src="./img/elements/star.png" alt="Star"/>
+					</div>
+					<p class="rating-number">@item.Rating.AverageRating @formattedVotesNumber</p>
+					
+				</div>
 			</div>
 		</li>
 		counter++;
