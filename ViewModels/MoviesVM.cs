@@ -4,7 +4,7 @@ namespace WebMovie.ViewModels
 {
 	public class MoviesVM
 	{
-		public List<Movie> Movies { get; set; }
-		public List<Rating> Ratings { get; set; }
+		public IEnumerable<Movie> Movies { get; set; }
+		public IEnumerable<Rating> Ratings { get; set; }
 	}
 }

@@ -1,23 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebMovie.Data;
+using WebMovie.Services.Interfaces;
 using WebMovie.ViewModels;
 
 namespace WebMovie.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public MoviesController(DatabaseContext databasecontext)
+        private readonly  IMoviesService _moviesService;
+        private readonly IRatingsService _ratingsService;
+        public MoviesController(IMoviesService moviesService, IRatingsService ratingsService)
         {
-            _databaseContext = databasecontext;           
+            _moviesService = moviesService;   
+            _ratingsService = ratingsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var moviesVM = new MoviesVM();
-            moviesVM.Movies = _databaseContext.Movies.ToList();
-            moviesVM.Ratings = _databaseContext.Ratings.ToList();
+            moviesVM.Movies = await _moviesService.GetAll();
+            moviesVM.Ratings = await _ratingsService.GetAll();
            
             return View(moviesVM);
         }

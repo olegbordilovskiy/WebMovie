@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebMovie.Data;
+using WebMovie.Services;
+using WebMovie.Services.Interfaces;
 
 namespace WebMovie
 {
@@ -13,7 +15,10 @@ namespace WebMovie
             builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
+            builder.Services.AddScoped<IMoviesService, MoviesService>();
+			builder.Services.AddScoped<IRatingsService, RatingsService>();
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -32,7 +37,7 @@ namespace WebMovie
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Movies}/{action=Index}/{id?}");
 
             DatabaseInitializer.Seed(app);
             app.Run();
