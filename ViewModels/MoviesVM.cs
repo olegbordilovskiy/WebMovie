@@ -13,9 +13,10 @@ namespace WebMovie.ViewModels
 		//public IEnumerable<Producer> Producers { get; set; }
 		public Movie Movie { get; set; }
 		public Rating Rating { get; set; }
-		public IEnumerable<Director> Directors { get; set; }
-		public IEnumerable<Writer> Writers { get; set; }
-		public IEnumerable<Role> Roles { get; set; }
-		public IEnumerable<Producer> Producers { get; set; }
+		public IEnumerable<string> Directors { get; set; }
+		//public IEnumerable<Director> Directors { get; set; }
+		//public IEnumerable<Writer> Writers { get; set; }
+		//public IEnumerable<Role> Roles { get; set; }
+		//public IEnumerable<Producer> Producers { get; set; }
 	}
 }
