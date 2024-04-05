@@ -58,15 +58,6 @@
 					<p class="rating-number">@movie.Rating.AverageRating @formattedVotesNumber</p>
 
 				</div>
-				@{
-					foreach (var director in movie.Directors)
-					{
-						<div>
-						<p>@director</p>
-						</div>
-
-					}
-				}
 			</div>
 		</li>
 		counter++;
