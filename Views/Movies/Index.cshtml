@@ -7,6 +7,7 @@
 <head>
 	<link href="~/css/Movies.css" rel="stylesheet" media="all" />
 </head>
+<h1 style="margin-top:50px;margin-bottom:50px">WebMovie Top 250 Movies</h1>
 <ul class="movies-top list-unstyled">
 	@{
 		int counter = 1;
@@ -52,10 +53,10 @@
 
 				<div class="rating">
 					<div class="rating-img-wrap">
-						<img src="./img/elements/star.png" alt="Star"/>
+						<img src="./img/elements/star.png" alt="Star" />
 					</div>
 					<p class="rating-number">@item.Rating.AverageRating @formattedVotesNumber</p>
-					
+
 				</div>
 			</div>
 		</li>

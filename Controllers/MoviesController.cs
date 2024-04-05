@@ -9,19 +9,28 @@ namespace WebMovie.Controllers
     {
         private readonly  IMoviesService _moviesService;
         private readonly IRatingsService _ratingsService;
-        public MoviesController(IMoviesService moviesService, IRatingsService ratingsService)
+        private readonly IDirectorsService _directorsService;
+		private readonly IRolesService _rolesService;
+		public MoviesController(IMoviesService moviesService, IRatingsService ratingsService, IDirectorsService directorsService, IRolesService rolesService)
         {
             _moviesService = moviesService;   
             _ratingsService = ratingsService;
+            _directorsService = directorsService;
+            _rolesService = rolesService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var moviesVM = new MoviesVM();
+			// transfer only the first 250
+			var moviesVM = new MoviesVM();
             moviesVM.Movies = await _moviesService.GetAll();
             moviesVM.Ratings = await _ratingsService.GetAll();
            
             return View(moviesVM);
+        }
+        public async Task<IActionResult> Create()
+        {
+            return View();
         }
     }
 }

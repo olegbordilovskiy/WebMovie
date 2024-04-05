@@ -1,0 +1,22 @@
+﻿@using WebMovie.ViewModels;
+@model MoviesVM;
+
+@{
+	ViewData["Title"] = "Add a new movie";
+}
+
+<div class="row text">
+	<div class="col-md-12">
+		<p><h1>Add a new movie</h1></p>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<form asp-action="Create">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			</form>
+			<div class="form-group">
+				<label asp-for="Movies"
+			</div>
+		</div>
+	</div>
+</div>
