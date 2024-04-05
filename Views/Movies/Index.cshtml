@@ -1,5 +1,5 @@
 ﻿@using WebMovie.ViewModels;
-@model MoviesVM;
+@model List<MoviesVM>;
 
 @{
 	ViewData["Title"] = "List of Movies";
@@ -12,27 +12,27 @@
 	@{
 		int counter = 1;
 	}
-	@foreach (var item in Model.Movies)
+	@foreach (var movie in Model)
 	{
 		<li class="row mb-4 mr-3">
 			<div class="poster col-md-1">
-				<img src="@item.PosterImageUrl" class="img-fluid" alt="Movie Poster">
+				<img src="@movie.Movie.PosterImageUrl" class="img-fluid" alt="Movie Poster">
 			</div>
 			<div class="description col-md-8">
 				<div class="title">
-					<span class="h5">@counter. @item.EnglishTitle</span>
+					<span class="h5">@counter. @movie.Movie.EnglishTitle</span>
 				</div>
 				<div class="info">
 					@{
-						var runtime = TimeSpan.FromMinutes(item.RuntimeMinutes);
+						var runtime = TimeSpan.FromMinutes(movie.Movie.RuntimeMinutes);
 						var formattedRuntime = $"{runtime.Hours}h {runtime.Minutes}m";
 					}
-					<div class="movie-info"><span>@item.StartYear</span> <span>@formattedRuntime</span> <span>@item.MPAA</span> </div>
+					<div class="movie-info"><span>@movie.Movie.StartYear</span> <span>@formattedRuntime</span> <span>@movie.Movie.MPAA</span> </div>
 				</div>
 				@{
 					string? votes;
 					char order = ' ';
-					var votesNumber = Model.Ratings.FirstOrDefault(r => r.MovieId == item.Id)?.VotesNumber;
+					var votesNumber = movie.Rating.VotesNumber;
 					if (votesNumber >= 1000000)
 					{
 						order = 'M';
@@ -46,7 +46,7 @@
 					else
 					{
 						order = ' ';
-						votes = votesNumber?.ToString();
+						votes = votesNumber.ToString();
 					}
 					var formattedVotesNumber = $"({votes}{order})";
 				}
@@ -55,7 +55,7 @@
 					<div class="rating-img-wrap">
 						<img src="./img/elements/star.png" alt="Star" />
 					</div>
-					<p class="rating-number">@item.Rating.AverageRating @formattedVotesNumber</p>
+					<p class="rating-number">@movie.Rating.AverageRating @formattedVotesNumber</p>
 
 				</div>
 			</div>
