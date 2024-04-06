@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebMovie.Data;
+using WebMovie.Models;
 using WebMovie.Services.Interfaces;
-using WebMovie.ViewModels;
+using WebMovie.ViewModels.Movies;
 
 namespace WebMovie.Controllers
 {
-	public class MoviesController : Controller
+    public class MoviesController : Controller
 	{
 		private readonly IMoviesService _moviesService;
 		private readonly IRatingsService _ratingsService;
@@ -49,7 +50,42 @@ namespace WebMovie.Controllers
 		}
 		public async Task<IActionResult> Create()
 		{
-			return View();
+			var names = await _namesService.GetAll();
+			var directors = await _directorsService.GetAll();
+
+			var createMovieMV = new CreateMovieVM();
+
+			var directorsDictionary = names
+				.Where(n => directors
+				.Any(d => d.Name == n))
+				.Select(n => new { n.FullName, n.Id })
+				.Distinct()
+				.Order()
+				.ToDictionary(n => n.Id, n => n.FullName);
+
+			ViewBag.Directors = directorsDictionary;
+			return View(createMovieMV);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Create(CreateMovieVM model)
+		{
+			//if (!ModelState.IsValid)
+			{
+			//	return View();
+			}
+			var movie = model.Movie;
+			var directorsId = model.Directors;
+			var names = await _namesService.GetAll();
+			var directorsNames = names.Where(n => directorsId.Contains(n.Id));
+
+			_moviesService.Add(movie);
+			foreach (var directorName in directorsNames)
+			{
+				_directorsService.Add(new Director {Movie = movie, Name = directorName});
+			}
+
+			return RedirectToAction("Index");
 		}
 	}
 }

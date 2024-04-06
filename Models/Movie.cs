@@ -8,10 +8,13 @@ namespace WebMovie.Models
         //[Key]
         public int Id { get; set; }
 
-        [Display(Name = "English title")] 
+        [Display(Name = "English title")]
+        [Required(ErrorMessage = "Title is required")]
+        [StringLength(100)]
         public string EnglishTitle { get; set; }
 
 		[Display(Name = "Description")]
+		[Required(ErrorMessage = "Description is required")]
 		public string Description { get; set; }
 
         public ushort StartYear { get; set; }
@@ -21,7 +24,8 @@ namespace WebMovie.Models
         public Country Country { get; set; }
         public MPAA MPAA { get; set; }
 
-        public ushort RuntimeMinutes { get; set; }
+		[Required(ErrorMessage = "Runtime is required")]
+		public ushort RuntimeMinutes { get; set; }
 
 		[Display(Name = "Poster Image URL")]
 		public string PosterImageUrl { get; set; }

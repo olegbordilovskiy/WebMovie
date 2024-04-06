@@ -14,7 +14,8 @@ namespace WebMovie.Services
         }
         public void Add(Movie movie)
 		{
-			throw new NotImplementedException();
+			_databaseContext.Add(movie);
+			//_databaseContext.SaveChanges();
 		}
 
 		public void Delete(int id)
