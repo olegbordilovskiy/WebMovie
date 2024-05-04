@@ -6,14 +6,16 @@
 @{
 	ViewBag.Title = "Add a new movie";
 	List<Country> countries = new List<Country>((Country[])Enum.GetValues(typeof(Country)));
+	List<MPAA> mpaas = new List<MPAA>((MPAA[])Enum.GetValues(typeof(MPAA)));
+
 }
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-4 mx-auto">
 		<p><h1>Add a new movie</h1></p>
 	</div>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-5 mx-auto">
 			<form asp-action="Create">
 				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<div class="form-group">
@@ -43,9 +45,10 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label asp-for="Movie.MPAA" class="control-label"></label>
-					<input asp-for="Movie.MPAA" class="form-control" />
-					<span asp-validation-for="Movie.MPAA" class="text-danger"></span>
+					<label asp-for="Movie.MPAA" class="control-label">MPAA</label>
+					<select asp-for="Movie.MPAA" asp-items="@(new SelectList(mpaas))" class="form-control">
+						<option value="">Select MPAA</option>
+					</select>
 				</div>
 				<div class="form-group">
 					<label asp-for="Movie.RuntimeMinutes" class="control-label"></label>
@@ -59,15 +62,60 @@
 				</div>
 
 				<div class="form-group">
-					<label asp-for="Directors" class="control-label">Choose director:</label>
+					<label asp-for="Directors" class="control-label">Choose directors:</label>
 					<select asp-for="Directors" class="form-control" multiple>
-						@foreach (var director in ViewBag.Directors)
+						@foreach (var name in ViewBag.Names)
 						{
-							<option value="@director.Key">@director.Value</option>
+							<option value="@name.Id">@name.FullName</option>
 						}
 					</select>
 					<span asp-validation-for="Directors" class="text-danger"></span>
 				</div>
+
+				<div class="form-group">
+					<label asp-for="Writers" class="control-label">Choose writers:</label>
+					<select asp-for="Writers" class="form-control" multiple>
+						@foreach (var name in ViewBag.Names)
+						{
+							<option value="@name.Id">@name.FullName</option>
+						}
+					</select>
+					<span asp-validation-for="Writers" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Producers" class="control-label">Choose producers:</label>
+					<select asp-for="Producers" class="form-control" multiple>
+						@foreach (var name in ViewBag.Names)
+						{
+							<option value="@name.Id">@name.FullName</option>
+						}
+					</select>
+					<span asp-validation-for="Writers" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Roles" class="control-label">Сhoose the actors and their roles:</label>
+					<select asp-for="Roles" class="form-control" multiple onchange="showRoleFields()">
+						@foreach (var name in ViewBag.Names)
+						{
+							<option value="@name.Id">@name.FullName</option>
+						}
+					</select>
+					<span asp-validation-for="Roles" class="text-danger"></span>
+				</div>
+
+				@* @{
+					var roles = ViewBag.Roles as Dictionary<int, string>;
+
+					foreach (var role in roles)
+					{
+						<div class="form-group" id="roleField_@role.Key" style="display: none;">
+							<label class="control-label">Role for @role.Value:</label>
+							<input type="text" asp-for="Roles[role.Key]" class="form-control" />
+						</div>
+					}
+				} *@
 
 				<div class="form-group">
 					<input type="submit" value="Create" class="btn btn-outline-warning" />
@@ -77,3 +125,16 @@
 		</div>
 	</div>
 </div>
+
+@* @section Scripts{
+<script>
+	function showRoleFields() {
+		var selectedActors = document.getElementById("Roles");
+		for (var i = 0; i < selectedActors.options.length; i++) {
+			var actorId = selectedActors.options[i].value;
+			var roleField = document.getElementById("roleField_" + actorId);
+			roleField.style.display = selectedActors.options[i].selected ? "block" : "none";
+		}
+	}
+</script>
+} *@

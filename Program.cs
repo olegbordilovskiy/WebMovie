@@ -20,6 +20,8 @@ namespace WebMovie
 			builder.Services.AddScoped<IDirectorsService, DirectorsService>();
 			builder.Services.AddScoped<IRolesService, RolesService>();
             builder.Services.AddScoped<INamesService, NamesService>();
+			builder.Services.AddScoped<IWritersService, WritersService>();
+			builder.Services.AddScoped<IProducersService, ProducersService>();
 
 			var app = builder.Build();
 

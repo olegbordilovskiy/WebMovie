@@ -8,7 +8,7 @@ namespace WebMovie.ViewModels.Movies
 		public Rating Rating { get; set; }
 		public List<int> Directors { get; set; }
 		public List<int> Writers { get; set; }
-		public List<int> Roles { get; set; }
+		public Dictionary<int, string> Roles { get; set; }
 		public List<int> Producers { get; set; }
 
 	}
