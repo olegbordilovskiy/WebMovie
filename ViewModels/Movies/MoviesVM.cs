@@ -6,9 +6,9 @@ namespace WebMovie.ViewModels.Movies
     {
         public Movie Movie { get; set; }
         public Rating Rating { get; set; }
-        public IEnumerable<string> Directors { get; set; }
-        public IEnumerable<string> Writers { get; set; }
-        public IEnumerable<string> Roles { get; set; }
-        public IEnumerable<string> Producers { get; set; }
+        //public IEnumerable<string> Directors { get; set; }
+        //public IEnumerable<string> Writers { get; set; }
+        //public IEnumerable<string> Roles { get; set; }
+        //public IEnumerable<string> Producers { get; set; }
     }
 }

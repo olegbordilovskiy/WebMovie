@@ -12,9 +12,10 @@ namespace WebMovie.Services
         {
 			_databaseContext = databaseContext;
         }
-        public Task Add(Role role)
+        public async Task Add(Role role)
 		{
-			throw new NotImplementedException();
+			await _databaseContext.Roles.AddAsync(role);
+			await _databaseContext.SaveChangesAsync();
 		}
 
 		public Task Delete(int id)

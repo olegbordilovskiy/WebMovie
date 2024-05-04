@@ -15,7 +15,7 @@ namespace WebMovie.Services
         public void Add(Director director)
 		{
 			_databaseContext.Directors.Add(director);
-			//_databaseContext.SaveChanges();
+			_databaseContext.SaveChanges();
 		}
 
 		public void Delete(int id)

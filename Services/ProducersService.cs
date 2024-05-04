@@ -14,7 +14,7 @@ namespace WebMovie.Services
         }
         public async Task Add(Producer producer)
 		{
-			_databaseContext.Producers.Add(producer);
+			await _databaseContext.Producers.AddAsync(producer);
 			await _databaseContext.SaveChangesAsync();
 		}
 

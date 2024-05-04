@@ -15,7 +15,7 @@ namespace WebMovie.Services
         public void Add(Movie movie)
 		{
 			_databaseContext.Movies.Add(movie);
-			//_databaseContext.SaveChanges();
+			_databaseContext.SaveChanges();
 		}
 
 		public void Delete(int id)

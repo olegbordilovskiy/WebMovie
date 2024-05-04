@@ -14,7 +14,9 @@ namespace WebMovie.Services
 		}
 		public void Add(Rating rating)
 		{
-			throw new NotImplementedException();
+			//rating.Id = null;
+			_databaseContext.Ratings.Add(rating);
+			_databaseContext.SaveChanges();
 		}
 
 		public void Delete(int id)

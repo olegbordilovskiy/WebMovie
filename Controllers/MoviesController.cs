@@ -34,22 +34,23 @@ namespace WebMovie.Controllers
 		{
 			var movies = await _moviesService.GetAll();
 			var ratings = await _ratingsService.GetAll();
-			var directors = await _directorsService.GetAll();
-			var names = await _namesService.GetAll();
+			//var ratings = await _ratingsService.GetAll();
+			//var directors = await _directorsService.GetAll();
+			//var names = await _namesService.GetAll();
 
 			var moviesVM = new List<MoviesVM>();
 
 			foreach (var movie in movies)
 			{
 				var rating = ratings.FirstOrDefault(r => r.MovieId == movie.Id);
-				var directorList = directors.Where(d => d.Movie == movie);
-				var directorNames = names.Where(n => directorList.Any(d => d.Name == n)).Select(n => n.FullName).ToList();
+				//var directorList = directors.Where(d => d.Movie == movie);
+				//var directorNames = names.Where(n => directorList.Any(d => d.Name == n)).Select(n => n.FullName).ToList();
 
 				moviesVM.Add(new MoviesVM
 				{
 					Movie = movie,
 					Rating = rating,
-					Directors = directorNames
+					//Directors = directorNames
 				});
 			}
 
@@ -74,6 +75,9 @@ namespace WebMovie.Controllers
 			}
 			var movie = model.Movie;
 			var rating = model.Rating;
+			//movie.Rating = rating;
+			rating.Movie = movie;
+
 			var directorsId = model.Directors;
 			var producersId = model.Producers;
 			var writersId = model.Writers;
@@ -86,6 +90,7 @@ namespace WebMovie.Controllers
 			var rolesNames = names.Where(n => roles.Keys.Contains(n.Id));
 
 			_moviesService.Add(movie);
+			_ratingsService.Add(rating);
 
 			foreach (var directorName in directorsNames)
 			{

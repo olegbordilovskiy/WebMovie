@@ -12,9 +12,10 @@ namespace WebMovie.Services
         {
             _databaseContext = databaseContext;
         }
-        public Task Add(Writer writer)
+        public async Task Add(Writer writer)
 		{
-			throw new NotImplementedException();
+			await _databaseContext.Writers.AddAsync(writer);
+			await _databaseContext.SaveChangesAsync();
 		}
 
 		public Task Delete(int id)
