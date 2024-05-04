@@ -97,6 +97,7 @@
 				<div class="form-group">
 					<label asp-for="Roles" class="control-label">Сhoose the actors and their roles:</label>
 					<select asp-for="Roles" class="form-control" multiple onchange="showRoleFields()">
+						<option value="">Not selected</option>
 						@foreach (var name in ViewBag.Names)
 						{
 							<option value="@name.Id">@name.FullName</option>
@@ -124,7 +125,7 @@
 			roleFields.innerHTML = ""; 
 
 			for (var i = 0; i < selectedActors.options.length; i++) {
-				if (selectedActors.options[i].selected) {
+				if (selectedActors.options[i].selected && selectedActors.options[i].value !== "") {
 					var actorId = selectedActors.options[i].value;
 					var actorName = selectedActors.options[i].text;
 
