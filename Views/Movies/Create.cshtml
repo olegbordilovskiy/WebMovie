@@ -105,17 +105,7 @@
 					<span asp-validation-for="Roles" class="text-danger"></span>
 				</div>
 
-				@* @{
-					var roles = ViewBag.Roles as Dictionary<int, string>;
-
-					foreach (var role in roles)
-					{
-						<div class="form-group" id="roleField_@role.Key" style="display: none;">
-							<label class="control-label">Role for @role.Value:</label>
-							<input type="text" asp-for="Roles[role.Key]" class="form-control" />
-						</div>
-					}
-				} *@
+				<div id="roleFields" class="form-group"></div>
 
 				<div class="form-group">
 					<input type="submit" value="Create" class="btn btn-outline-warning" />
@@ -126,15 +116,26 @@
 	</div>
 </div>
 
-@* @section Scripts{
+@section Scripts{
 <script>
-	function showRoleFields() {
-		var selectedActors = document.getElementById("Roles");
-		for (var i = 0; i < selectedActors.options.length; i++) {
-			var actorId = selectedActors.options[i].value;
-			var roleField = document.getElementById("roleField_" + actorId);
-			roleField.style.display = selectedActors.options[i].selected ? "block" : "none";
+		function showRoleFields() {
+			var selectedActors = document.getElementById("Roles");
+			var roleFields = document.getElementById("roleFields");
+			roleFields.innerHTML = ""; 
+
+			for (var i = 0; i < selectedActors.options.length; i++) {
+				if (selectedActors.options[i].selected) {
+					var actorId = selectedActors.options[i].value;
+					var actorName = selectedActors.options[i].text;
+
+					var newRoleField = '<div class="form-group" id="roleField_' + actorId + '">'
+						+ '<label class="control-label">Role for ' + actorName + ':</label>'
+						+ '<input type="text" name="Roles[' + actorId + ']" class="form-control" />'
+						+ '</div>';
+
+					roleFields.insertAdjacentHTML('beforeend', newRoleField);
+				}
+			}
 		}
-	}
 </script>
-} *@
+}
