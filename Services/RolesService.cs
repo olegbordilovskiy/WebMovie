@@ -12,12 +12,12 @@ namespace WebMovie.Services
         {
 			_databaseContext = databaseContext;
         }
-        public void Add(Role role)
+        public Task Add(Role role)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Delete(int id)
+		public Task Delete(int id)
 		{
 			throw new NotImplementedException();
 		}
@@ -28,12 +28,12 @@ namespace WebMovie.Services
 			return result;
 		}
 
-		public Role GetById(int id)
+		public Task<Role> GetById(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Role Update(int id, Role role)
+		public Task<Role> Update(int id, Role role)
 		{
 			throw new NotImplementedException();
 		}

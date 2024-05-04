@@ -5,9 +5,9 @@ namespace WebMovie.Services.Interfaces
 	public interface IRolesService
 	{
 		Task<IEnumerable<Role>> GetAll();
-		Role GetById(int id);
-		void Add(Role role);
-		Role Update(int id, Role role);
-		void Delete(int id);
+		Task<Role> GetById(int id);
+		Task Add(Role role);
+		Task<Role> Update(int id, Role role);
+		Task Delete(int id);
 	}
 }

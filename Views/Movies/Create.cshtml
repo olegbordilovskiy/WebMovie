@@ -75,6 +75,7 @@
 				<div class="form-group">
 					<label asp-for="Writers" class="control-label">Choose writers:</label>
 					<select asp-for="Writers" class="form-control" multiple>
+						<option value="">Not selected</option>
 						@foreach (var name in ViewBag.Names)
 						{
 							<option value="@name.Id">@name.FullName</option>
@@ -86,6 +87,7 @@
 				<div class="form-group">
 					<label asp-for="Producers" class="control-label">Choose producers:</label>
 					<select asp-for="Producers" class="form-control" multiple>
+						<option value="">Not selected</option>
 						@foreach (var name in ViewBag.Names)
 						{
 							<option value="@name.Id">@name.FullName</option>

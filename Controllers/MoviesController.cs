@@ -58,49 +58,7 @@ namespace WebMovie.Controllers
 		public async Task<IActionResult> Create()
 		{
 			var names = await _namesService.GetAll();
-			//var directors = await _directorsService.GetAll();
-			//var writers = await _writersService.GetAll();
-			//var roles = await _rolesService.GetAll();
-			//var producers = await _producersService.GetAll();
-
 			var createMovieMV = new CreateMovieVM();
-
-			//var directorsDictionary = names
-			//	.Where(n => directors
-			//	.Any(d => d.Name == n))
-			//	.Select(n => new { n.FullName, n.Id })
-			//	.Distinct()
-			//	.Order()
-			//	.ToDictionary(n => n.Id, n => n.FullName);
-
-			//var writersDictionary = names
-			//	.Where(n => writers
-			//	.Any(d => d.Name == n))
-			//	.Select(n => new { n.FullName, n.Id })
-			//	.Distinct()
-			//	.Order()
-			//	.ToDictionary(n => n.Id, n => n.FullName);
-
-			//var rolesDictionary = names
-			//	.Where(n => roles
-			//	.Any(d => d.Name == n))
-			//	.Select(n => new { n.FullName, n.Id })
-			//	.Distinct()
-			//	.Order()
-			//	.ToDictionary(n => n.Id, n => n.FullName);
-
-			//var producersDictionary = names
-			//	.Where(n => producers
-			//	.Any(d => d.Name == n))
-			//	.Select(n => new { n.FullName, n.Id })
-			//	.Distinct()
-			//	.Order()
-			//	.ToDictionary(n => n.Id, n => n.FullName);
-
-			//ViewBag.Directors = directorsDictionary;
-			//ViewBag.Writers = writersDictionary;
-			//ViewBag.Producers = producersDictionary;
-			//ViewBag.Roles = rolesDictionary;
 
 			ViewBag.Names = names;
 
@@ -115,14 +73,40 @@ namespace WebMovie.Controllers
 				//	return View();
 			}
 			var movie = model.Movie;
+			var rating = model.Rating;
 			var directorsId = model.Directors;
+			var producersId = model.Producers;
+			var writersId = model.Writers;
+			var roles = model.Roles;
+
 			var names = await _namesService.GetAll();
 			var directorsNames = names.Where(n => directorsId.Contains(n.Id));
+			var producersNames = names.Where(n => producersId.Contains(n.Id));
+			var writersNames = names.Where(n => writersId.Contains(n.Id));
+			var rolesNames = names.Where(n => roles.Keys.Contains(n.Id));
 
 			_moviesService.Add(movie);
+
 			foreach (var directorName in directorsNames)
 			{
 				_directorsService.Add(new Director { Movie = movie, Name = directorName });
+			}
+
+			foreach (var producerName in producersNames)
+			{
+				await _producersService.Add(new Producer { Movie = movie, Name = producerName });
+			}
+
+			foreach (var writerName in writersNames)
+			{
+				await _writersService.Add(new Writer { Movie = movie, Name = writerName });
+			}
+
+			foreach (var roleName in rolesNames)
+			{
+				
+				var character = roles.FirstOrDefault(r => r.Key == roleName.Id).Value;
+				await _rolesService.Add(new Role { Movie = movie, Name = roleName, Character = character });
 			}
 
 			return RedirectToAction("Index");
