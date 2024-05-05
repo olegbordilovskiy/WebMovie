@@ -1,0 +1,60 @@
+﻿@using WebMovie.ViewModels.Movies;
+@using WebMovie.Models;
+@model DetailsMovieVM;
+@{
+	ViewData["Title"] = $"{Model.Movie.EnglishTitle}";
+}
+<head>
+	<link href="~/css/Details.css" rel="stylesheet" media="all" />
+	<link href="~/img/" />
+</head>
+<div class="row">
+	<div class="poster col-md-3 mt-5">
+		<img src="/.@Model.Movie.PosterImageUrl" class="img-fluid" alt="Movie Poster">
+	</div>
+	<div class="col-md-5 mx-3">
+		<h1 style="margin-top:50px;margin-bottom:50px">@Model.Movie.EnglishTitle</h1>
+		<div class="col-md-8">
+			<div class="info">
+				@{
+					var runtime = TimeSpan.FromMinutes(Model.Movie.RuntimeMinutes);
+					var formattedRuntime = $"{runtime.Hours}h {runtime.Minutes}m";
+				}
+				<div class="movie-info fs-5">
+					<div><span style="font-weight:600">Year: </span>@Model.Movie.StartYear </div>
+					<div><span style="font-weight:600">Timing: </span>@formattedRuntime </div>
+					<div><span style="font-weight:600">MPAA: </span>@Model.Movie.MPAA</div>
+					@{
+						string? votes;
+						char order = ' ';
+						var votesNumber = Model.Rating.VotesNumber;
+						if (votesNumber >= 1000000)
+						{
+							order = 'M';
+							votes = ((float)votesNumber / 1000000).ToString("0.0");
+						}
+						else if (votesNumber >= 1000)
+						{
+							order = 'K';
+							votes = ((float)votesNumber / 1000).ToString("0.0");
+						}
+						else
+						{
+							order = ' ';
+							votes = votesNumber.ToString();
+						}
+						var formattedVotesNumber = $"({votes}{order})";
+					}
+					<div><span style="font-weight:600">Rating: </span>@Model.Rating.AverageRating @formattedVotesNumber</div>
+					
+				</div>
+			</div>
+			
+
+		</div>
+		
+	</div>
+	<div class="description fs-4 mt-4">
+		@Model.Movie.Description
+	</div>
+

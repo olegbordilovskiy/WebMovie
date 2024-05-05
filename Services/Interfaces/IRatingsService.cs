@@ -9,5 +9,6 @@ namespace WebMovie.Services.Interfaces
 		void Add(Rating rating);
 		Rating Update(int id, Rating rating);
 		void Delete(int id);
+		Task<Rating> GetRatingForMovie(Movie movie);
 	}
 }

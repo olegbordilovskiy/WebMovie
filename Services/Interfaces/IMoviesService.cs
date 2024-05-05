@@ -5,9 +5,9 @@ namespace WebMovie.Services.Interfaces
     public interface IMoviesService
     {
         Task<IEnumerable<Movie>> GetAll();
-        Movie GetById(int id);
-        void Add(Movie movie);
-        Movie Update(int id, Movie movie);
-        void Delete(int id);
+        Task<Movie> GetById(int id);
+        Task Add(Movie movie);
+        Task<Movie> Update(int id, Movie movie);
+        Task Delete(int id);
     }
 }

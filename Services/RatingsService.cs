@@ -38,5 +38,12 @@ namespace WebMovie.Services
 		{
 			throw new NotImplementedException();
 		}
+
+		public async Task<Rating> GetRatingForMovie(Movie movie)
+		{
+			var ratingForMovie = await _databaseContext.Ratings.FirstOrDefaultAsync(r => r.Movie == movie);
+
+			return ratingForMovie;
+		}
 	}
 }

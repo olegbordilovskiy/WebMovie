@@ -12,13 +12,13 @@ namespace WebMovie.Services
         {
             _databaseContext = databaseContext;
         }
-        public void Add(Movie movie)
+        public async Task Add(Movie movie)
 		{
-			_databaseContext.Movies.Add(movie);
-			_databaseContext.SaveChanges();
+			await _databaseContext.Movies.AddAsync(movie);
+			await _databaseContext.SaveChangesAsync();
 		}
 
-		public void Delete(int id)
+		public Task Delete(int id)
 		{
 			throw new NotImplementedException();
 		}
@@ -29,12 +29,13 @@ namespace WebMovie.Services
 			return result;
 		}
 
-		public Movie GetById(int id)
+		public async Task<Movie> GetById(int id)
 		{
-			throw new NotImplementedException();
+			var movie = await _databaseContext.Movies.FindAsync(id);
+			return movie;
 		}
 
-		public Movie Update(int id, Movie movie)
+		public async Task<Movie> Update(int id, Movie movie)
 		{
 			throw new NotImplementedException();
 		}

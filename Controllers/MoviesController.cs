@@ -109,5 +109,20 @@ namespace WebMovie.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> Details (int id)
+		{
+			var movie = await _moviesService.GetById(id);
+			var rating = await _ratingsService.GetRatingForMovie(movie);
+
+			var detailsMovieVM = new DetailsMovieVM
+			{
+				Movie = movie,
+				Rating = rating,
+			};
+
+			return View(detailsMovieVM);
+		}
 	}
 }
