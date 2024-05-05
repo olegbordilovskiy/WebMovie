@@ -5,7 +5,6 @@ namespace WebMovie.Models
 {
     public class Movie
     {
-        //[Key]
         public int Id { get; set; }
 
         [Display(Name = "English title")]
@@ -29,8 +28,6 @@ namespace WebMovie.Models
 
 		[Display(Name = "Poster Image URL")]
 		public string PosterImageUrl { get; set; }
-
-        // Relations
 
         public List<Director> Directors { get; set; }
         public List<KnownFor> KnownFors { get; set; }

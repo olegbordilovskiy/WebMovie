@@ -14,7 +14,6 @@ namespace WebMovie.Services
 		}
 		public void Add(Rating rating)
 		{
-			//rating.Id = null;
 			_databaseContext.Ratings.Add(rating);
 			_databaseContext.SaveChanges();
 		}
