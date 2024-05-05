@@ -7,6 +7,7 @@
 		public int CustomerId { get; set; }
 		public string ReviewText {  get; set; }
 		public byte Rating { get; set; }
-		//public Review Review { get; set; }
+		public Movie Movie { get; set; }
+		public Customer Customer { get; set; }
 	}
 }

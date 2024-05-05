@@ -34,23 +34,17 @@ namespace WebMovie.Controllers
 		{
 			var movies = await _moviesService.GetAll();
 			var ratings = await _ratingsService.GetAll();
-			//var ratings = await _ratingsService.GetAll();
-			//var directors = await _directorsService.GetAll();
-			//var names = await _namesService.GetAll();
 
 			var moviesVM = new List<MoviesVM>();
 
 			foreach (var movie in movies)
 			{
 				var rating = ratings.FirstOrDefault(r => r.MovieId == movie.Id);
-				//var directorList = directors.Where(d => d.Movie == movie);
-				//var directorNames = names.Where(n => directorList.Any(d => d.Name == n)).Select(n => n.FullName).ToList();
 
 				moviesVM.Add(new MoviesVM
 				{
 					Movie = movie,
 					Rating = rating,
-					//Directors = directorNames
 				});
 			}
 
@@ -75,7 +69,6 @@ namespace WebMovie.Controllers
 			}
 			var movie = model.Movie;
 			var rating = model.Rating;
-			//movie.Rating = rating;
 			rating.Movie = movie;
 
 			var directorsId = model.Directors;
