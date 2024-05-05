@@ -53,11 +53,11 @@ namespace WebMovie.Controllers
 		public async Task<IActionResult> Create()
 		{
 			var names = await _namesService.GetAll();
-			var createMovieMV = new CreateMovieVM();
+			//var createMovieMV = new CreateMovieVM();
 
 			ViewBag.Names = names;
 
-			return View(createMovieMV);
+			return View();
 		}
 
 		[HttpPost]

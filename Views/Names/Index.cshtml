@@ -2,40 +2,44 @@
 	@using WebMovie.ViewModels.Names;
 	@model List<NamesVM>;
 
+@{
+	ViewData["Title"] = "List of peoples";
+}
+<head>
+	<link href="~/css/Names.css" rel="stylesheet" media="all" />
+</head>
+<h1 style="margin-top:50px;margin-bottom:50px">WebMovie Top 50 Peoples</h1>
+<ul class="movies-top list-unstyled">
 	@{
-		ViewData["Title"] = "List of peoples";
+		int counter = 1;
 	}
-	<head>
-		<link href="~/css/Names.css" rel="stylesheet" media="all" />
-	</head>
-	<h1 style="margin-top:50px;margin-bottom:50px">WebMovie Top 50 Peoples</h1>
-	<ul class="movies-top list-unstyled">
-		@{
-			int counter = 1;
-		}
-		@foreach (var nameVM in Model)
-		{
-			<li class="row mb-4 mr-3">
-				<div class="face col-md-1">
-					<img src="@nameVM.Name.FaceImageUrl" class="img-fluid" alt="Movie Poster">
+	@foreach (var nameVM in Model)
+	{
+		<li class="row mb-4 mr-3">
+			<div class="face col-md-1">
+				<img src="@nameVM.Name.FaceImageUrl" class="img-fluid" alt="Movie Poster">
+			</div>
+			<div class="description col-md-8">
+				<div class="title">
+					<span class="h5">@counter. @nameVM.Name.FullName</span>
 				</div>
-				<div class="description col-md-8">
-					<div class="title">
-						<span class="h5">@counter. @nameVM.Name.FullName</span>
-					</div>
-					<div class="info">
-						@{
-							<div class="movie-info"></div>
-							foreach (var profession in nameVM.Professions)
+				<div class="info">
+					@{
+						<div class="movie-info"></div>
+						foreach (var profession in nameVM.Professions)
+						{
+							<span>@profession</span>
+							@if (profession != nameVM.Professions.Last())
 							{
-								<span>@profession</span>
+								<span>, </span>
 							}
 						}
-						@* <div class="movie-info"><span>@nameVM.Movie.StartYear</span> <span>@formattedRuntime</span> <span>@nameVM.Movie.MPAA</span> </div> *@
-					</div>
-
+					}
+			
 				</div>
-			</li>
-			counter++;
-		}
-	</ul>
+
+			</div>
+		</li>
+		counter++;
+	}
+</ul>

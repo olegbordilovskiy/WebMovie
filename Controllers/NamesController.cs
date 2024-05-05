@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebMovie.Data;
+using WebMovie.Models;
+using WebMovie.Services;
 using WebMovie.Services.Interfaces;
 using WebMovie.ViewModels.Movies;
 using WebMovie.ViewModels.Names;
@@ -41,5 +43,33 @@ namespace WebMovie.Controllers
 
 			return View(namesVM);
 		}
+
+		public async Task<IActionResult> Create()
+		{
+			var names = await _namesService.GetAll();
+			//var createNameMV = new CreateNameVM();
+
+			ViewBag.Names = names;
+
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Create(CreateNameVM model)
+		{
+			var name = model.Name;
+			var professions = model.Professions;
+
+			_namesService.Add(name);
+			foreach (var profession in professions)
+			{
+				var prof = new Profession { Name = name, MovieProfession = profession };
+				await _professionsService.Add(prof);
+			}
+			
+
+			return RedirectToAction("Index");
+		}
+		
 	}
 }

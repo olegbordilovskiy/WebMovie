@@ -14,7 +14,7 @@ namespace WebMovie.Services
         }
         public async Task Add(Profession profession)
 		{
-			await _databaseContext.Professions.AddAsync(profession);
+			 await _databaseContext.Professions.AddAsync(profession);
 			await _databaseContext.SaveChangesAsync();
 		}
 
