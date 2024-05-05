@@ -7,6 +7,8 @@
 <head>
 	<link href="~/css/Details.css" rel="stylesheet" media="all" />
 </head>
+<body style="background-color:rgba(0,0,0,0.08)">
+
 <div class="row">
 	<div class="poster col-md-3 mt-5">
 		<img src="/.@Model.Movie.PosterImageUrl" class="img-fluid" alt="Movie Poster">
@@ -52,7 +54,7 @@
 							{
 								foreach (var director in Model.Directors)
 								{
-									@Html.ActionLink(director.Value, "Details", "Names", new { id = director.Key }, null)
+									@Html.ActionLink(director.Value, "Details", "Names", new { id = director.Key }, new { @class = "name-link" })
 									@if (director.Key != Model.Directors.Last().Key)
 									{
 										<span>, </span>
@@ -116,7 +118,8 @@
 		</div>
 
 	</div>
-	<div class="description fs-4 mt-4">
+		<div class="description fs-4 mt-4" style="font-weight:400">
 		@Model.Movie.Description
 	</div>
+</body>
 

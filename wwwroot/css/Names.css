@@ -1,1 +1,8 @@
-﻿
+﻿.name-link {
+    color: black;
+    text-decoration: none;
+}
+
+    .name-link:hover {
+        color: darkred;
+    }

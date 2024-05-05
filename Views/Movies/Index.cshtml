@@ -8,6 +8,7 @@
 <head>
 	<link href="~/css/Movies.css" rel="stylesheet" media="all" />
 </head>
+<body style="background-color:rgba(0,0,0,0.08)">
 <h1 style="margin-top:50px;margin-bottom:50px">WebMovie Top 250 Movies</h1>
 <ul class="movies-top list-unstyled">
 	@{
@@ -21,7 +22,9 @@
 			</div>
 			<div class="description col-md-8">
 				<div class="title">
-					<span class="h5">@counter. @movie.Movie.EnglishTitle</span>
+					<a href="@Url.Action("Details", "Movies", new { id = movie.Movie.Id })" class="movie-link">
+						<span class="h5">@counter. @movie.Movie.EnglishTitle</span>
+					</a>
 				</div>
 				<div class="info">
 					@{
@@ -64,3 +67,4 @@
 		counter++;
 	}
 </ul>
+</body>

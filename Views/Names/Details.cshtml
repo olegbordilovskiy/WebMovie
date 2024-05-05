@@ -1,0 +1,42 @@
+﻿@using WebMovie.ViewModels.Names;
+@using WebMovie.Models;
+@model DetailsNameVM;
+@{
+	ViewData["Title"] = $"{Model.Name.FullName}";
+}
+<head>
+	<link href="~/css/Details.css" rel="stylesheet" media="all" />
+</head>
+<body style="background-color:rgba(0,0,0,0.08)">
+
+	<div class="row">
+		<div class="poster col-md-3 mt-5">
+			@{
+				string imageUrl;
+				if (Model.Name.FaceImageUrl != null)
+					imageUrl = Model.Name.FaceImageUrl;
+				else imageUrl = "/../img/elements/nop.png";
+			}
+			<img src="@imageUrl" class="img-fluid" alt="Person's picture'">
+		</div>
+		<div class="col-md-5 mx-3">
+			<h1 style="margin-top:50px;margin-bottom:50px">@Model.Name.FullName</h1>
+			<div class="col-md-8">
+				<div class="info">
+					<div class="movie-info fs-5">
+						<div><span style="font-weight:600">Birth year: </span>@Model.Name.BirthYear </div>
+						@{
+							if (Model.Name.DeathYear != null)
+							{
+								<div><span style="font-weight:600">Death year: </span>@Model.Name.DeathYear</div>
+							}
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="description fs-4 mt-4" style="font-weight:400">
+			@Model.Name.Description
+		</div>
+</body>
+

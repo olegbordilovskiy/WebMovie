@@ -70,6 +70,18 @@ namespace WebMovie.Controllers
 
 			return RedirectToAction("Index");
 		}
-		
+
+		[HttpGet]
+		public async Task<IActionResult> Details(int id)
+		{
+			var name = await _namesService.GetById(id);
+
+			var detailsNamesVM = new DetailsNameVM
+			{ Name = name };
+
+			return View(detailsNamesVM);
+		}
+
+
 	}
 }

@@ -27,7 +27,7 @@ namespace WebMovie.Models
 		public ushort RuntimeMinutes { get; set; }
 
 		[Display(Name = "Poster Image URL")]
-		public string PosterImageUrl { get; set; }
+		public string? PosterImageUrl { get; set; }
 
         public List<Director> Directors { get; set; }
         public List<KnownFor> KnownFors { get; set; }

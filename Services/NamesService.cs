@@ -29,9 +29,10 @@ namespace WebMovie.Services
 			return result;
 		}
 
-		public Name GetById(int id)
+		public async Task<Name> GetById(int id)
 		{
-			throw new NotImplementedException();
+			var name = await _databaseContext.Names.FindAsync(id);
+			return name;
 		}
 
 		public Name Update(int id, Name name)
