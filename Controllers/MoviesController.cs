@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using WebMovie.Data;
 using WebMovie.Models;
 using WebMovie.Services.Interfaces;
@@ -115,11 +116,20 @@ namespace WebMovie.Controllers
 		{
 			var movie = await _moviesService.GetById(id);
 			var rating = await _ratingsService.GetRatingForMovie(movie);
+			var directorsId = await _directorsService.GetDirectorsForMovie(movie);
+			var names = await _namesService.GetDirectorsById(directorsId.ToList());
+			var stringNames = names.Select(n => n.FullName);
+			var directors = new Dictionary<int,string>();
+			foreach (var name in names)
+			{
+				directors.Add(name.Id, name.FullName);
+			}
 
 			var detailsMovieVM = new DetailsMovieVM
 			{
 				Movie = movie,
 				Rating = rating,
+				Directors = directors
 			};
 
 			return View(detailsMovieVM);

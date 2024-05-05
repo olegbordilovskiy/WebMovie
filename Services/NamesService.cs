@@ -38,5 +38,15 @@ namespace WebMovie.Services
 		{
 			throw new NotImplementedException();
 		}
+		public async Task<IEnumerable<Name>> GetDirectorsById(List<int> id)
+		{
+			var directorsNames = new List<Name>();
+			foreach (var directorId in id)
+			{
+				var name = _databaseContext.Names.Find(directorId);
+				directorsNames.Add(name);
+			}
+			return directorsNames;
+		}
 	}
 }

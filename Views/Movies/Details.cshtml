@@ -6,7 +6,6 @@
 }
 <head>
 	<link href="~/css/Details.css" rel="stylesheet" media="all" />
-	<link href="~/img/" />
 </head>
 <div class="row">
 	<div class="poster col-md-3 mt-5">
@@ -46,13 +45,41 @@
 						var formattedVotesNumber = $"({votes}{order})";
 					}
 					<div><span style="font-weight:600">Rating: </span>@Model.Rating.AverageRating @formattedVotesNumber</div>
-					
+					<div>
+						<span style="font-weight:600">Director: </span>
+						@{
+							foreach (var director in Model.Directors)
+							{
+								@Html.ActionLink(director.Value, "Details", "Names", new { id = director.Key }, null)
+								@if (director.Key != Model.Directors.Last().Key)
+								{
+									<span>, </span>
+								}
+							}
+						}
+
+					</div>
+					<div>
+						<span style="font-weight:600">Producer: </span>
+						@{
+							foreach (var producer in Model.Producers)
+							{
+								@Html.ActionLink(producer.Value, "Details", "Names", new { id = producer.Key }, null)
+								@if (producer.Key != Model.Producers.Last().Key)
+								{
+									<span>,</span>
+								}
+							}
+						}
+
+					</div>
+
 				</div>
 			</div>
-			
+
 
 		</div>
-		
+
 	</div>
 	<div class="description fs-4 mt-4">
 		@Model.Movie.Description

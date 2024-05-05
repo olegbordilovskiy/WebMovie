@@ -9,5 +9,6 @@ namespace WebMovie.Services.Interfaces
 		void Add(Director director);
 		Director Update(int id, Director director);
 		void Delete(int id);
+		Task<IEnumerable<int>> GetDirectorsForMovie(Movie movie);
 	}
 }
