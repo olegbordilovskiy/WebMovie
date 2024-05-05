@@ -116,20 +116,41 @@ namespace WebMovie.Controllers
 		{
 			var movie = await _moviesService.GetById(id);
 			var rating = await _ratingsService.GetRatingForMovie(movie);
+
 			var directorsId = await _directorsService.GetDirectorsForMovie(movie);
-			var names = await _namesService.GetDirectorsById(directorsId.ToList());
-			var stringNames = names.Select(n => n.FullName);
-			var directors = new Dictionary<int,string>();
-			foreach (var name in names)
+			var directorsNames = await _namesService.GetDirectorsById(directorsId.ToList());
+			var directorsStringNames = directorsNames.Select(n => n.FullName);
+			var directorsDictionary = new Dictionary<int,string>();
+			foreach (var name in directorsNames)
 			{
-				directors.Add(name.Id, name.FullName);
+				directorsDictionary.Add(name.Id, name.FullName);
+			}
+
+			var producersId = await _producersService.GetProducersForMovie(movie);
+			var producersNames = await _namesService.GetProducersById(producersId.ToList());
+			var producersStringNames = directorsNames.Select(n => n.FullName);
+			var producersDictionary = new Dictionary<int, string>();
+			foreach (var name in producersNames)
+			{
+				producersDictionary.Add(name.Id, name.FullName);
+			}
+
+			var writersId = await _writersService.GetWritersForMovie(movie);
+			var writersNames = await _namesService.GetWritersById(writersId.ToList());
+			var writersStringNames = writersNames.Select(n => n.FullName);
+			var writersDictionary = new Dictionary<int, string>();
+			foreach (var name in writersNames)
+			{
+				writersDictionary.Add(name.Id, name.FullName);
 			}
 
 			var detailsMovieVM = new DetailsMovieVM
 			{
 				Movie = movie,
 				Rating = rating,
-				Directors = directors
+				Directors = directorsDictionary,
+				Producers = producersDictionary,
+				Writers = writersDictionary
 			};
 
 			return View(detailsMovieVM);

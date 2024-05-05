@@ -38,5 +38,14 @@ namespace WebMovie.Services
 		{
 			throw new NotImplementedException();
 		}
+		public async Task<IEnumerable<int>> GetWritersForMovie(Movie movie)
+		{
+			var writers = await _databaseContext.Writers
+				.Where(d => d.Movie == movie)
+				 .Select(d => d.NameId)
+				.ToListAsync();
+
+			return writers;
+		}
 	}
 }

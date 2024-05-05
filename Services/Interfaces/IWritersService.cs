@@ -9,5 +9,7 @@ namespace WebMovie.Services.Interfaces
 		Task Add(Writer writer);
 		Task<Writer> Update(int id, Writer writer);
 		Task Delete(int id);
+		Task<IEnumerable<int>> GetWritersForMovie(Movie movie);
+
 	}
 }

@@ -1,4 +1,5 @@
-﻿using WebMovie.Models;
+﻿using WebMovie.Data;
+using WebMovie.Models;
 
 namespace WebMovie.Services.Interfaces
 {
@@ -9,5 +10,6 @@ namespace WebMovie.Services.Interfaces
 		Task Add(Producer producer);
 		Task<Producer> Update(int id, Producer producer);
 		Task Delete(int id);
+		Task<IEnumerable<int>> GetProducersForMovie(Movie movie);
 	}
 }

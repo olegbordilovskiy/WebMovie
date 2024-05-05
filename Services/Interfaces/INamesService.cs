@@ -9,7 +9,8 @@ namespace WebMovie.Services.Interfaces
 		void Add(Name name);
 		Name Update(int id, Name name);
 		void Delete(int id);
-
 		Task<IEnumerable<Name>> GetDirectorsById(List<int> id);
+		Task<IEnumerable<Name>> GetProducersById(List<int> id);
+		Task<IEnumerable<Name>> GetWritersById(List<int> id);
 	}
 }

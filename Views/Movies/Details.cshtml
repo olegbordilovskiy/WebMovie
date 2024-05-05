@@ -48,13 +48,20 @@
 					<div>
 						<span style="font-weight:600">Director: </span>
 						@{
-							foreach (var director in Model.Directors)
+							if (Model.Directors.Any())
 							{
-								@Html.ActionLink(director.Value, "Details", "Names", new { id = director.Key }, null)
-								@if (director.Key != Model.Directors.Last().Key)
+								foreach (var director in Model.Directors)
 								{
-									<span>, </span>
+									@Html.ActionLink(director.Value, "Details", "Names", new { id = director.Key }, null)
+									@if (director.Key != Model.Directors.Last().Key)
+									{
+										<span>, </span>
+									}
 								}
+							}
+							else
+							{
+								<span>-</span>
 							}
 						}
 
@@ -62,14 +69,42 @@
 					<div>
 						<span style="font-weight:600">Producer: </span>
 						@{
-							foreach (var producer in Model.Producers)
+							if (Model.Producers.Any())
 							{
-								@Html.ActionLink(producer.Value, "Details", "Names", new { id = producer.Key }, null)
-								@if (producer.Key != Model.Producers.Last().Key)
+								foreach (var producer in Model.Producers)
 								{
-									<span>,</span>
+									@Html.ActionLink(producer.Value, "Details", "Names", new { id = producer.Key }, null)
+									@if (producer.Key != Model.Producers.Last().Key)
+									{
+										<span>, </span>
+									}
 								}
 							}
+							else
+							{
+								<span>-</span>
+							}
+						}
+					</div>
+					<div>
+						<span style="font-weight:600">Writer: </span>
+						@{
+							if (Model.Writers.Any())
+							{
+								foreach (var writer in Model.Writers)
+								{
+									@Html.ActionLink(writer.Value, "Details", "Names", new { id = writer.Key }, null)
+									@if (writer.Key != Model.Writers.Last().Key)
+									{
+										<span>, </span>
+									}
+								}
+							}
+							else
+							{
+								<span>-</span>
+							}
+
 						}
 
 					</div>

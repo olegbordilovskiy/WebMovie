@@ -38,6 +38,16 @@ namespace WebMovie.Services
 		{
 			throw new NotImplementedException();
 		}
+		public async Task<IEnumerable<Name>> GetProducersById(List<int> id)
+		{
+			var producersNames = new List<Name>();
+			foreach (var producerId in id)
+			{
+				var name = _databaseContext.Names.Find(producerId);
+				producersNames.Add(name);
+			}
+			return producersNames;
+		}
 		public async Task<IEnumerable<Name>> GetDirectorsById(List<int> id)
 		{
 			var directorsNames = new List<Name>();
@@ -47,6 +57,16 @@ namespace WebMovie.Services
 				directorsNames.Add(name);
 			}
 			return directorsNames;
+		}
+		public async Task<IEnumerable<Name>> GetWritersById(List<int> id)
+		{
+			var writersNames = new List<Name>();
+			foreach (var writerId in id)
+			{
+				var name = _databaseContext.Names.Find(writerId);
+				writersNames.Add(name);
+			}
+			return writersNames;
 		}
 	}
 }
